@@ -7,6 +7,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11' # Use the appropriate Java version for your project
+
+      - name: Install Android SDK and AIDL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          # Install the Android SDK command line tools
+          wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+          mkdir -p $HOME/Android/Sdk/cmdline-tools
+          unzip commandlinetools-linux-7583922_latest.zip -d $HOME/Android/Sdk/cmdline-tools
+          # Set up environment variables
+          echo "export ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
+          echo "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/bin" >> $GITHUB_ENV
+          echo "export PATH=$PATH:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
+          # Install necessary SDK components
+          yes | sdkmanager --sdk_root=$ANDROID_HOME --install "platform-tools" "build-tools;30.0.3" "platforms;android-30"
+
       - name: Build APK
         uses: digreatbrian/buildozer-action@v2
         with:
