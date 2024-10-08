@@ -23,10 +23,10 @@ jobs:
           unzip commandlinetools-linux-7583922_latest.zip -d $HOME/Android/Sdk/cmdline-tools
           # Set up environment variables
           echo "export ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
-          echo "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/bin" >> $GITHUB_ENV
+          echo "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/cmdline-tools/bin" >> $GITHUB_ENV
           echo "export PATH=$PATH:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
           # Install necessary SDK components
-          yes | sdkmanager --sdk_root=$ANDROID_HOME --install "platform-tools" "build-tools;30.0.3" "platforms;android-30"
+          yes | $HOME/Android/Sdk/cmdline-tools/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --install "platform-tools" "build-tools;30.0.3" "platforms;android-30"
 
       - name: Build APK
         uses: digreatbrian/buildozer-action@v2
