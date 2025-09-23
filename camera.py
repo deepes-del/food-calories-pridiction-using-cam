@@ -1,3 +1,5 @@
+used flask to impliment application for calorie using mibile cameras.
+    
 from flask import Flask, render_template, Response
 import cv2
 
@@ -25,4 +27,5 @@ def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
+
     app.run(debug=True)
