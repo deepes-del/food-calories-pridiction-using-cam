@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = My Application
+title = calorie prdiction application
 
 # (str) Package name
 package.name = foodcount
