@@ -1,5 +1,5 @@
 [app]
-
+## the user should make new buildozer.spec file insted on=f using this because this file and be expired
 # (str) Title of your application
 title = calorie prdiction application
 
